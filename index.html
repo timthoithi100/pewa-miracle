@@ -321,17 +321,35 @@
   .destinations { background: var(--cream); }
   .destinations-inner { max-width: 1200px; margin: 0 auto; }
   .dest-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-  .dest-grid {
+
+  /* Hero row: 1 big + 2 medium */
+  .dest-hero-row {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 280px 280px;
+    grid-template-rows: 320px;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  /* Second row: 3 equal */
+  .dest-mid-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 240px;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  /* Third row: 4 equal compact */
+  .dest-bottom-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 200px;
     gap: 1rem;
   }
+
   .dest-card {
     position: relative; border-radius: 18px; overflow: hidden; cursor: pointer;
     background: var(--green-mid);
   }
-  .dest-card:first-child { grid-row: 1 / 3; }
   .dest-card img {
     width: 100%; height: 100%; object-fit: cover;
     transition: transform 0.5s;
@@ -340,11 +358,14 @@
   .dest-card:hover img { transform: scale(1.07); }
   .dest-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(13,59,30,0.85) 0%, transparent 50%);
+    background: linear-gradient(to top, rgba(13,59,30,0.88) 0%, rgba(13,59,30,0.1) 55%, transparent 100%);
   }
-  .dest-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; }
-  .dest-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--white); }
-  .dest-sub  { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin-top: 0.15rem; }
+  .dest-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.25rem 1.5rem; }
+  .dest-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; color: var(--white); line-height: 1.2; }
+  .dest-sub  { font-size: 0.75rem; color: rgba(255,255,255,0.65); margin-top: 0.2rem; letter-spacing: 0.03em; }
+  /* Smaller name for compact bottom row */
+  .dest-bottom-row .dest-name { font-size: 1.1rem; }
+  .dest-bottom-row .dest-info { padding: 1rem; }
   .dest-arrow {
     position: absolute; top: 1rem; right: 1rem;
     width: 36px; height: 36px;
@@ -355,6 +376,15 @@
     opacity: 0; transition: opacity 0.3s, background 0.3s;
   }
   .dest-card:hover .dest-arrow { opacity: 1; background: var(--green-bright); color: var(--green-deep); }
+  .dest-region-tag {
+    position: absolute; top: 1rem; left: 1rem;
+    background: rgba(13,59,30,0.7);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(111,221,139,0.3);
+    color: var(--green-light);
+    font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 100px;
+  }
 
   /* ── WHY US ── */
   .whyus { background: var(--green-pale); }
@@ -436,9 +466,49 @@
     background: radial-gradient(circle, rgba(45,184,75,0.15) 0%, transparent 70%);
   }
   .cta-band .section-label { color: var(--green-light); }
-  .cta-band .section-title { color: var(--white); margin: 0 auto 1.5rem; max-width: 600px; }
-  .cta-band p { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.75; }
-  .cta-band .btn-primary { font-size: 1.05rem; padding: 1rem 2.8rem; }
+  .cta-band .section-title { color: var(--white); margin: 0 auto 1rem; max-width: 600px; }
+  .cta-band > div > p { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.75; }
+  .cta-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .cta-contact-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(111,221,139,0.25);
+    border-radius: 18px;
+    padding: 1.75rem 1.5rem;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.25s, border-color 0.25s;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  }
+  .cta-contact-card:hover {
+    background: rgba(45,184,75,0.18);
+    border-color: rgba(117,255,152,0.45);
+    transform: translateY(-4px);
+  }
+  .cta-contact-icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+  }
+  .cta-contact-icon.email-icon  { background: rgba(45,184,75,0.25); }
+  .cta-contact-icon.wa-icon     { background: rgba(37,211,102,0.25); }
+  .cta-contact-icon.post-icon   { background: rgba(201,168,76,0.25); }
+  .cta-contact-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--green-light); font-weight: 500;
+  }
+  .cta-contact-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 600;
+    color: var(--white); line-height: 1.3; text-align: center;
+  }
+  .cta-contact-card.no-link { cursor: default; }
+  .cta-contact-card.no-link:hover { transform: none; }
 
   /* ── FOOTER ── */
   footer {
@@ -477,8 +547,10 @@
     .services-grid { grid-template-columns: repeat(2,1fr); }
     .about-inner, .whyus-inner { grid-template-columns: 1fr; gap: 3rem; }
     .about-images { height: 360px; }
-    .dest-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 240px 240px 240px; }
-    .dest-card:first-child { grid-row: auto; }
+    .dest-hero-row { grid-template-columns: 1fr 1fr; grid-template-rows: 260px; }
+    .dest-hero-row .dest-card:first-child { grid-column: 1 / -1; }
+    .dest-mid-row { grid-template-columns: 1fr 1fr; grid-template-rows: 220px; }
+    .dest-bottom-row { grid-template-columns: repeat(2, 1fr); grid-template-rows: 180px 180px; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
@@ -486,10 +558,15 @@
     .stats-bar { gap: 2rem; padding: 2rem; }
     .services-grid { grid-template-columns: 1fr; }
     .testi-grid { grid-template-columns: 1fr; }
-    .dest-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-    .dest-card { height: 240px; }
+    .dest-hero-row, .dest-mid-row, .dest-bottom-row {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+    .dest-hero-row .dest-card:first-child { grid-column: auto; }
+    .dest-card { height: 220px; }
     .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
     .dest-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .cta-contact-grid { grid-template-columns: 1fr !important; }
   }
 
   /* ── PLACEHOLDER IMAGE HELPERS (swap with real photos) ── */
@@ -641,47 +718,139 @@
         <span class="section-label">Where We Go</span>
         <h2 class="section-title">Iconic <em>Destinations</em></h2>
       </div>
-      <p style="color:var(--text-muted);font-size:0.9rem;max-width:300px;text-align:right;">From East African heartlands to international escapes — we take you there.</p>
+      <p style="color:var(--text-muted);font-size:0.9rem;max-width:300px;text-align:right;">From East African heartlands to the Holy Land and beyond — we take you there.</p>
     </div>
-    <div class="dest-grid">
+
+    <!-- ROW 1: Hero + 2 medium (3 cards) -->
+    <div class="dest-hero-row">
 
       <div class="dest-card">
-        <!-- PHOTO CUE: Maasai Mara wide-shot — wildebeest migration or big five at dusk -->
+        <!-- Holy Land hero — Western Wall or Jerusalem skyline at golden hour -->
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80" alt="Jerusalem, Israel">
+        <div class="dest-overlay"></div>
+        <span class="dest-region-tag">Holy Land</span>
+        <div class="dest-info">
+          <div class="dest-name">Jerusalem & Bethlehem</div>
+          <div class="dest-sub">Israel · River Jordan · Kibbutz Farms</div>
+        </div>
+        <div class="dest-arrow">→</div>
+      </div>
+
+      <div class="dest-card">
+        <!-- Maasai Mara wildlife at golden hour -->
         <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=900&q=80" alt="Maasai Mara">
         <div class="dest-overlay"></div>
-        <div class="dest-info"><div class="dest-name">Maasai Mara</div><div class="dest-sub">Kenya · Wildlife Reserve</div></div>
+        <span class="dest-region-tag">Kenya</span>
+        <div class="dest-info">
+          <div class="dest-name">Maasai Mara</div>
+          <div class="dest-sub">Nairobi NP · Maasai Market · Mombasa</div>
+        </div>
         <div class="dest-arrow">→</div>
       </div>
 
       <div class="dest-card">
-        <!-- PHOTO CUE: Zanzibar white-sand beach, turquoise water -->
-        <img src="https://images.unsplash.com/photo-1683322753580-6bf07759dbfe?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Zanzibar">
+        <!-- Egypt — Pyramids of Giza dramatic shot -->
+        <img src="https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=900&q=80" alt="Egypt Pyramids">
         <div class="dest-overlay"></div>
-        <div class="dest-info"><div class="dest-name">Zanzibar</div><div class="dest-sub">Tanzania · Island Retreat</div></div>
+        <span class="dest-region-tag">Africa</span>
+        <div class="dest-info">
+          <div class="dest-name">Egypt</div>
+          <div class="dest-sub">Pyramids of Giza · Mt. Sinai</div>
+        </div>
+        <div class="dest-arrow">→</div>
+      </div>
+
+    </div>
+
+    <!-- ROW 2: 3 equal cards -->
+    <div class="dest-mid-row">
+
+      <div class="dest-card">
+        <!-- Rome / Vatican — St Peter's Square or Colosseum -->
+        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=900&q=80" alt="Rome & Vatican">
+        <div class="dest-overlay"></div>
+        <span class="dest-region-tag">Europe</span>
+        <div class="dest-info">
+          <div class="dest-name">Italy</div>
+          <div class="dest-sub">Rome · Vatican · Assisi · Milan</div>
+        </div>
         <div class="dest-arrow">→</div>
       </div>
 
       <div class="dest-card">
-        <!-- PHOTO CUE: Kilimanjaro peak through clouds, snow cap, dramatic sky -->
-        <img src="https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=700&q=80" alt="Kilimanjaro">
+        <!-- Cape Town — Table Mountain aerial -->
+        <img src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=900&q=80" alt="Cape Town, South Africa">
         <div class="dest-overlay"></div>
-        <div class="dest-info"><div class="dest-name">Kilimanjaro</div><div class="dest-sub">Tanzania · Mountain Trek</div></div>
+        <span class="dest-region-tag">South Africa</span>
+        <div class="dest-info">
+          <div class="dest-name">Cape Town</div>
+          <div class="dest-sub">Table Mountain · Robben Island · Vineyards</div>
+        </div>
         <div class="dest-arrow">→</div>
       </div>
 
       <div class="dest-card">
-        <!-- PHOTO CUE: Victoria Falls mist and rainbow, aerial or frontal view -->
-        <img src="https://images.unsplash.com/photo-1678714001094-ba90abd57fec?q=80&w=738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Victoria Falls">
+        <!-- Bali rice terraces or temple -->
+        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80" alt="Bali, Indonesia">
         <div class="dest-overlay"></div>
-        <div class="dest-info"><div class="dest-name">Victoria Falls</div><div class="dest-sub">Zambia/Zimbabwe · Natural Wonder</div></div>
+        <span class="dest-region-tag">Asia</span>
+        <div class="dest-info">
+          <div class="dest-name">Bali, Indonesia</div>
+          <div class="dest-sub">Temples · Rice Terraces · Culture</div>
+        </div>
+        <div class="dest-arrow">→</div>
+      </div>
+
+    </div>
+
+    <!-- ROW 3: 4 compact cards -->
+    <div class="dest-bottom-row">
+
+      <div class="dest-card">
+        <!-- Fatima / Lourdes or Notre-Dame -->
+        <img src="https://images.unsplash.com/photo-1431274172761-fcdab704a5a4?w=700&q=80" alt="France">
+        <div class="dest-overlay"></div>
+        <span class="dest-region-tag">Europe</span>
+        <div class="dest-info">
+          <div class="dest-name">France & Portugal</div>
+          <div class="dest-sub">Lourdes · Notre-Dame · Fatima</div>
+        </div>
         <div class="dest-arrow">→</div>
       </div>
 
       <div class="dest-card">
-        <!-- PHOTO CUE: Serengeti plains, sweeping golden grassland, lone acacia tree -->
-        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=700&q=80" alt="Serengeti">
+        <!-- Zanzibar beach -->
+        <img src="https://images.unsplash.com/photo-1683322753580-6bf07759dbfe?w=700&q=80" alt="Zanzibar">
         <div class="dest-overlay"></div>
-        <div class="dest-info"><div class="dest-name">Serengeti</div><div class="dest-sub">Tanzania · National Park</div></div>
+        <span class="dest-region-tag">Tanzania</span>
+        <div class="dest-info">
+          <div class="dest-name">Zanzibar & Kilimanjaro</div>
+          <div class="dest-sub">Island Retreat · Mountain Trek</div>
+        </div>
+        <div class="dest-arrow">→</div>
+      </div>
+
+      <div class="dest-card">
+        <!-- Greece — Acropolis or Santorini -->
+        <img src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=700&q=80" alt="Greece & Turkey">
+        <div class="dest-overlay"></div>
+        <span class="dest-region-tag">Europe / Asia Minor</span>
+        <div class="dest-info">
+          <div class="dest-name">Greece & Turkey</div>
+          <div class="dest-sub">St. Paul's Missionary Journeys</div>
+        </div>
+        <div class="dest-arrow">→</div>
+      </div>
+
+      <div class="dest-card">
+        <!-- South Africa Johannesburg / Soweto -->
+        <img src="https://images.unsplash.com/photo-1573235630767-e2cca62aca2c?w=700&q=80" alt="Johannesburg, South Africa">
+        <div class="dest-overlay"></div>
+        <span class="dest-region-tag">South Africa</span>
+        <div class="dest-info">
+          <div class="dest-name">Johannesburg</div>
+          <div class="dest-sub">Apartheid Museum · Soweto · Shaka Land</div>
+        </div>
         <div class="dest-arrow">→</div>
       </div>
 
@@ -757,7 +926,28 @@
     <span class="section-label">Start Your Journey</span>
     <h2 class="section-title">Ready for Your Next <em>Adventure?</em></h2>
     <p>Let's build your perfect trip together. Reach out to our team and we'll take it from there.</p>
-    <a href="mailto:jane@pewamiracletravel.com" class="btn-primary">✉ info@pewamiracletravel.com</a>
+
+    <div class="cta-contact-grid">
+
+      <a href="mailto:info@pewamiracletravel.com" class="cta-contact-card">
+        <div class="cta-contact-icon email-icon">✉️</div>
+        <span class="cta-contact-label">Email Us</span>
+        <span class="cta-contact-value">info@pewamiracletravel.com</span>
+      </a>
+
+      <a href="https://wa.me/254795733626" target="_blank" rel="noopener" class="cta-contact-card">
+        <div class="cta-contact-icon wa-icon">💬</div>
+        <span class="cta-contact-label">WhatsApp</span>
+        <span class="cta-contact-value">+254 795 733 626</span>
+      </a>
+
+      <div class="cta-contact-card no-link">
+        <div class="cta-contact-icon post-icon">📮</div>
+        <span class="cta-contact-label">Postal Address</span>
+        <span class="cta-contact-value">P.O. Box 1439-00502</span>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -788,10 +978,18 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:info@pewamiracletravel.com">info@pewamiracletravel.com</a></li>
+        <li><a href="https://wa.me/254795733626">WhatsApp: +254 795 733 626</a></li>
+        <li style="color:rgba(255,255,255,0.55);font-size:0.88rem;">P.O. Box 1439-00502</li>
+      </ul>
+    </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Pewa Miracle Travel and Tours Ltd. All rights reserved.</span>
-    <span style="color:rgba(255,255,255,0.3);">pewamiracletravel.com</span>
+    <span>© 2026 Pewa Miracle Travel & Tours Ltd. All rights reserved.</span>
+    <span style="color:rgba(255,255,255,0.3);">Provides Adventurous Experience</span>
   </div>
 </footer>
 
