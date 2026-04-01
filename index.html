@@ -85,12 +85,10 @@
     background:
       linear-gradient(160deg, rgba(13,59,30,0.88) 0%, rgba(26,107,58,0.55) 60%, transparent 100%),
       url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80') center/cover no-repeat;
-    /* PHOTO CUE: Replace with aerial shot of lush African highlands or Kenyan savannah at golden hour */
     animation: slowZoom 20s ease-in-out infinite alternate;
   }
   @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.06); } }
 
-  /* floating petal shapes */
   .hero::before {
     content: '';
     position: absolute; top: -120px; right: -80px;
@@ -231,7 +229,6 @@
     border-radius: 20px;
     object-fit: cover;
     box-shadow: 0 20px 60px rgba(13,59,30,0.25);
-    /* PHOTO CUE: Lush safari landscape or adventure group hiking – vibrant greens */
   }
   .about-img-accent {
     position: absolute; bottom: 0; right: 0;
@@ -240,7 +237,6 @@
     object-fit: cover;
     box-shadow: 0 20px 60px rgba(13,59,30,0.2);
     border: 4px solid var(--cream);
-    /* PHOTO CUE: Close-up of happy travellers or local cultural experience */
   }
   .about-badge {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -301,7 +297,6 @@
     width: 100%; height: 200px; object-fit: cover;
     transition: transform 0.5s;
     display: block;
-    /* alt img placeholder */
     background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
   }
   .service-card:hover .service-img { transform: scale(1.05); }
@@ -322,7 +317,6 @@
   .destinations-inner { max-width: 1200px; margin: 0 auto; }
   .dest-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
 
-  /* Hero row: 1 big + 2 medium */
   .dest-hero-row {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -330,7 +324,6 @@
     gap: 1rem;
     margin-bottom: 1rem;
   }
-  /* Second row: 3 equal */
   .dest-mid-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -338,7 +331,6 @@
     gap: 1rem;
     margin-bottom: 1rem;
   }
-  /* Third row: 4 equal compact */
   .dest-bottom-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -363,7 +355,6 @@
   .dest-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.25rem 1.5rem; }
   .dest-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; color: var(--white); line-height: 1.2; }
   .dest-sub  { font-size: 0.75rem; color: rgba(255,255,255,0.65); margin-top: 0.2rem; letter-spacing: 0.03em; }
-  /* Smaller name for compact bottom row */
   .dest-bottom-row .dest-name { font-size: 1.1rem; }
   .dest-bottom-row .dest-info { padding: 1rem; }
   .dest-arrow {
@@ -414,7 +405,6 @@
     border-radius: 24px; overflow: hidden;
     height: 480px;
     box-shadow: 0 24px 60px rgba(13,59,30,0.25);
-    /* PHOTO CUE: Tour guide with group in scenic nature, joyful & authentic */
     background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
   }
   .whyus-visual img { width: 100%; height: 100%; object-fit: cover; }
@@ -470,9 +460,9 @@
   .cta-band > div > p { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.75; }
   .cta-contact-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
-    max-width: 860px;
+    max-width: 1100px;
     margin: 0 auto;
   }
   .cta-contact-card {
@@ -495,6 +485,7 @@
     font-size: 1.4rem;
     margin-bottom: 0.25rem;
   }
+  .cta-contact-icon.call-icon  { background: rgba(100,180,255,0.25); }
   .cta-contact-icon.email-icon  { background: rgba(45,184,75,0.25); }
   .cta-contact-icon.wa-icon     { background: rgba(37,211,102,0.25); }
   .cta-contact-icon.post-icon   { background: rgba(201,168,76,0.25); }
@@ -569,7 +560,6 @@
     .cta-contact-grid { grid-template-columns: 1fr !important; }
   }
 
-  /* ── PLACEHOLDER IMAGE HELPERS (swap with real photos) ── */
   .img-placeholder { background: linear-gradient(135deg, #1a6b3a 0%, #0d3b1e 100%); }
 </style>
 </head>
@@ -593,11 +583,10 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <!-- PHOTO CUE: Hero bg → Sweeping aerial or wide-angle: African highlands, Kenyan savannah sunset, or mountain range with lush greenery. High resolution, cinematic. -->
   <div class="hero-content">
     <span class="hero-eyebrow">✈ Provides Seamless Experiences</span>
     <h1>Where <em>Every Journey</em><br>Becomes a Miracle</h1>
-    <p>Pewa Miracle Travel & Tours crafts unforgettable experiences — from thrilling safaris to seamless travel logistics — for the bold and the curious.</p>
+    <p>Pewa Miracle Travel & Tours crafts unforgettable experiences — from thrilling safaris to seamless travel logistics — for all.</p>
     <div class="hero-btns">
       <a href="#services" class="btn-primary">Explore Our Services</a>
       <a href="#destinations" class="btn-ghost">View Destinations</a>
@@ -608,21 +597,11 @@
   <div class="scroll-indicator">Scroll</div>
 </section>
 
-<!-- STATS BAR -->
-<!-- <div class="stats-bar">
-  <div class="stat"><div class="stat-number">500+</div><div class="stat-label">Happy Travellers</div></div>
-  <div class="stat"><div class="stat-number">30+</div><div class="stat-label">Destinations</div></div>
-  <div class="stat"><div class="stat-number">10+</div><div class="stat-label">Years Combined Expertise</div></div>
-  <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Licensed & Certified</div></div>
-</div> -->
-
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-inner">
     <div class="about-images">
-      <!-- PHOTO CUE: Main → Wide lush landscape with road cutting through green savannah or rainforest -->
       <img class="about-img-main img-placeholder" src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=900&q=80" alt="Scenic African landscape" style="width:72%;height:78%;position:absolute;top:0;left:0;border-radius:20px;object-fit:cover;box-shadow:0 20px 60px rgba(13,59,30,0.25);">
-      <!-- PHOTO CUE: Accent → Joyful group of travellers, diverse, smiling -->
       <img class="about-img-accent img-placeholder" src="https://images.unsplash.com/photo-1561489404-42f13a2f09a2?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fGNvbmZlcmVuY2V8ZW58MHx8MHx8fDA%3D" alt="Happy travellers" style="width:54%;height:52%;position:absolute;bottom:0;right:0;border-radius:20px;object-fit:cover;box-shadow:0 20px 60px rgba(13,59,30,0.2);border:4px solid var(--cream);">
       <div class="about-badge"><span>PMT</span><span>EST.<br>2026</span></div>
     </div>
@@ -645,42 +624,12 @@
 <section class="services" id="services">
   <div class="services-inner">
     <span class="section-label">What We Offer</span>
-    <h2 class="section-title">Crafted for the <em>Adventurous</em> Spirit</h2>
+    <h2 class="section-title">Crafted for the <em>Innovative</em> Spirit</h2>
     <div class="services-grid">
 
+      <!-- 1. Flight & Hotel Booking -->
       <div class="service-card">
-        <!-- PHOTO CUE: Elephant or big-five wildlife at golden hour, wide open savannah -->
-        <img class="service-img" src="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1168&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Safari Tours" style="width:100%;height:200px;object-fit:cover;display:block;">
-        <div class="service-body">
-          <span class="service-tag">Wildlife</span>
-          <div class="service-name">Safari & Wildlife Tours</div>
-          <p class="service-desc">Encounter Africa's magnificent wildlife up close. Our expert-guided safaris are designed for intimacy, safety, and breathtaking moments you will never forget.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <!-- PHOTO CUE: Mountain hikers on a dramatic ridgeline at sunrise -->
-        <img class="service-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80" alt="Adventure Tours" style="width:100%;height:200px;object-fit:cover;display:block;">
-        <div class="service-body">
-          <span class="service-tag">Adventure</span>
-          <div class="service-name">Adventure & Hiking</div>
-          <p class="service-desc">From mountain treks to white-water thrills, we pair you with certified guides and top gear for adrenaline-fuelled expeditions done safely.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <!-- PHOTO CUE: Couple or family at a scenic cultural/beach destination -->
-        <img class="service-img" src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=700&q=80" alt="Holiday Packages" style="width:100%;height:200px;object-fit:cover;display:block;">
-        <div class="service-body">
-          <span class="service-tag">Leisure</span>
-          <div class="service-name">Holiday Packages</div>
-          <p class="service-desc">Beach escapes, city breaks, and cultural retreats — fully curated end-to-end with accommodation, transfers, and hand-picked experiences.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <!-- PHOTO CUE: Business people boarding or at airport, executive feel -->
-        <img class="service-img" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&q=80" alt="Travel Logistics" style="width:100%;height:200px;object-fit:cover;display:block;">
+        <img class="service-img" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&q=80" alt="Flight & Hotel Booking" style="width:100%;height:200px;object-fit:cover;display:block;">
         <div class="service-body">
           <span class="service-tag">Logistics</span>
           <div class="service-name">Flight & Hotel Booking</div>
@@ -688,8 +637,8 @@
         </div>
       </div>
 
+      <!-- 2. Group & Corporate Travel -->
       <div class="service-card">
-        <!-- PHOTO CUE: Diverse group of excited conference attendees in a scenic setting -->
         <img class="service-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&q=80" alt="Group Tours" style="width:100%;height:200px;object-fit:cover;display:block;">
         <div class="service-body">
           <span class="service-tag">Groups</span>
@@ -698,13 +647,43 @@
         </div>
       </div>
 
+      <!-- 3. Visa & Travel Advisory -->
       <div class="service-card">
-        <!-- PHOTO CUE: Visa documents / passport with stamps, organized desk -->
         <img class="service-img" src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=700&q=80" alt="Visa & Documentation" style="width:100%;height:200px;object-fit:cover;display:block;">
         <div class="service-body">
           <span class="service-tag">Documentation</span>
           <div class="service-name">Visa & Travel Advisory</div>
           <p class="service-desc">Expert guidance on visa applications, travel insurance, and destination advisories — we keep your journey legal, safe, and worry-free.</p>
+        </div>
+      </div>
+
+      <!-- 4. Adventure & Hiking -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80" alt="Adventure Tours" style="width:100%;height:200px;object-fit:cover;display:block;">
+        <div class="service-body">
+          <span class="service-tag">Adventure</span>
+          <div class="service-name">Adventure & Hiking</div>
+          <p class="service-desc">From mountain treks to white-water thrills, we pair you with certified guides and top gear for adrenaline-fuelled expeditions done safely.</p>
+        </div>
+      </div>
+
+      <!-- 5. Meet & Assist -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=700&q=80" alt="Meet & Assist" style="width:100%;height:200px;object-fit:cover;display:block;">
+        <div class="service-body">
+          <span class="service-tag">Concierge</span>
+          <div class="service-name">Meet & Assist</div>
+          <p class="service-desc">Our dedicated team greets and guides you through airports, ports, and border crossings — handling formalities so your journey begins and ends smoothly.</p>
+        </div>
+      </div>
+
+      <!-- 6. Safari & Wildlife Tours -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1168&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Safari Tours" style="width:100%;height:200px;object-fit:cover;display:block;">
+        <div class="service-body">
+          <span class="service-tag">Wildlife</span>
+          <div class="service-name">Safari & Wildlife Tours</div>
+          <p class="service-desc">Encounter Africa's magnificent wildlife up close. Our expert-guided safaris are designed for intimacy, safety, and breathtaking moments you will never forget.</p>
         </div>
       </div>
 
@@ -851,7 +830,6 @@
       </div>
     </div>
     <div class="whyus-visual">
-      <!-- PHOTO CUE: Tour guide pointing out wildlife to excited travellers in an open jeep — warm, vibrant, authentic -->
       <img src="https://images.unsplash.com/photo-1548438294-1ad5d5f4f063?w=800&q=80" alt="Guided tour experience">
       <div class="whyus-quote">
         <p>"Travel is the only thing you buy that makes you richer — and we make sure every penny counts."</p>
@@ -861,39 +839,20 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<!-- <section class="testimonials">
-  <div class="testimonials-inner">
-    <span class="section-label">Client Stories</span>
-    <h2 class="section-title">Voices of <em>Happy Travellers</em></h2>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Pewa Miracle made our Maasai Mara safari absolutely seamless. Every detail was thought through — the guides were phenomenal and the experience was truly life-changing."</p>
-        <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Amara O.</div><div class="testi-place">Lagos, Nigeria</div></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Our corporate retreat was flawlessly organised. 45 staff members, four days in the wild — zero stress. Pewa handled everything with incredible professionalism."</p>
-        <div class="testi-author"><div class="testi-avatar">D</div><div><div class="testi-name">David M.</div><div class="testi-place">Nairobi, Kenya</div></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"From visa assistance to the final hotel checkout, Pewa Miracle was with us every step. I've used many travel agencies — none compare to this level of care."</p>
-        <div class="testi-author"><div class="testi-avatar">F</div><div><div class="testi-name">Fatima K.</div><div class="testi-place">Accra, Ghana</div></div></div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
 <!-- CTA BAND -->
 <section class="cta-band" id="contact">
   <div style="position:relative;z-index:2;">
     <span class="section-label">Start Your Journey</span>
-    <h2 class="section-title">Ready for Your Next <em style="color: #0a2813;">Experience</em>?</h2>
+    <h2 class="section-title">Ready for Your Next <em style="color: #0d3b1e;"">Experience</em>?</h2>
     <p>Let's build your perfect trip together. Reach out to our team and we'll take it from there.</p>
 
     <div class="cta-contact-grid">
+
+      <a href="tel:+254795733626" class="cta-contact-card">
+        <div class="cta-contact-icon call-icon">📞</div>
+        <span class="cta-contact-label">Call Us</span>
+        <span class="cta-contact-value">+254 795 733 626</span>
+      </a>
 
       <a href="mailto:info@pewamiracletravel.com" class="cta-contact-card">
         <div class="cta-contact-icon email-icon">✉️</div>
@@ -910,7 +869,7 @@
       <div class="cta-contact-card no-link">
         <div class="cta-contact-icon post-icon">📮</div>
         <span class="cta-contact-label">Postal Address</span>
-        <span class="cta-contact-value">P.O. Box 1439-00502</span>
+        <span class="cta-contact-value">P.O. Box 1439-00502 Karen, Nairobi - Kenya</span>
       </div>
 
     </div>
@@ -922,17 +881,18 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <span class="nav-wordmark">Pewa Miracle Travel & Tours Ltd</span>
-      <p>A fully licensed travel and tours company providing adventurous experiences across Africa and beyond.</p>
-      <span class="footer-tagline">Provides Adventurous Experience</span>
+      <p>A fully licensed travel and tours company providing seamless experiences across the whole world.</p>
+      <span class="footer-tagline">Provides Seamless Experiences</span>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
       <ul>
-        <li><a href="#services">Safari & Wildlife Tours</a></li>
-        <li><a href="#services">Adventure & Hiking</a></li>
-        <li><a href="#services">Holiday Packages</a></li>
+        <li><a href="#services">Flight & Hotel Booking</a></li>
         <li><a href="#services">Group & Corporate Travel</a></li>
         <li><a href="#services">Visa & Travel Advisory</a></li>
+        <li><a href="#services">Adventure & Hiking</a></li>
+        <li><a href="#services">Meet & Assist</a></li>
+        <li><a href="#services">Safari & Wildlife Tours</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -947,15 +907,16 @@
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="mailto:info@pewamiracletravel.com">info@pewamiracletravel.com</a></li>
+        <li><a href="tel:+254795733626">Call us: +254 795 733 626</a></li>
+        <li><a href="mailto:info@pewamiracletravel.com">Email us: info@pewamiracletravel.com</a></li>
         <li><a href="https://wa.me/254795733626">WhatsApp: +254 795 733 626</a></li>
-        <li style="color:rgba(255,255,255,0.55);font-size:0.88rem;">P.O. Box 1439-00502</li>
+        <li style="color:rgba(255,255,255,0.55);font-size:0.88rem;">P.O. Box 1439-00502 Karen, Nairobi - Kenya</li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Pewa Miracle Travel & Tours Ltd. All rights reserved.</span>
-    <span style="color:rgba(255,255,255,0.3);">Provides Adventurous Experience</span>
+    <span style="color:rgba(255,255,255,0.3);">Provides Seamless Experiences</span>
   </div>
 </footer>
 
