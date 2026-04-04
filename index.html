@@ -73,6 +73,100 @@
   }
   .nav-cta:hover { background: var(--green-light) !important; transform: translateY(-1px); }
 
+  /* ── HAMBURGER BUTTON (mobile only) ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(111,221,139,0.25);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .hamburger:hover {
+    background: rgba(45,184,75,0.18);
+    border-color: rgba(117,255,152,0.45);
+  }
+  .hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--green-light);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+    transform-origin: center;
+  }
+
+  /* Hamburger → X animation */
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ── */
+  .mobile-menu {
+    display: none; /* shown via JS */
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 99;
+    background: rgba(13,59,30,0.97);
+    backdrop-filter: blur(16px);
+    padding-top: 80px; /* clear nav bar */
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(111,221,139,0.15);
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .mobile-menu.open {
+    transform: translateY(0);
+  }
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem 0;
+  }
+  .mobile-menu ul li {
+    border-bottom: 1px solid rgba(111,221,139,0.1);
+  }
+  .mobile-menu ul li:last-child { border-bottom: none; }
+  .mobile-menu ul li a {
+    display: block;
+    padding: 1rem 0;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .mobile-menu ul li a:hover {
+    color: var(--green-light);
+    padding-left: 0.5rem;
+  }
+  .mobile-menu ul li a.nav-cta-mobile {
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--green-bright);
+    color: var(--green-deep);
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .mobile-menu ul li a.nav-cta-mobile:hover {
+    background: var(--green-light);
+    padding-left: 2rem;
+  }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -545,7 +639,10 @@
     .footer-inner { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
     .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: block; }
     .stats-bar { gap: 2rem; padding: 2rem; }
     .services-grid { grid-template-columns: 1fr; }
     .testi-grid { grid-template-columns: 1fr; }
@@ -578,7 +675,24 @@
     <li><a href="#why-us">Why Us</a></li>
     <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
   </ul>
+  <!-- Hamburger: mobile only -->
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU DRAWER -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul>
+    <li><a href="#about"        class="mobile-nav-link">About</a></li>
+    <li><a href="#services"     class="mobile-nav-link">Services</a></li>
+    <li><a href="#destinations" class="mobile-nav-link">Destinations</a></li>
+    <li><a href="#why-us"       class="mobile-nav-link">Why Us</a></li>
+    <li><a href="#contact"      class="mobile-nav-link nav-cta-mobile">Get in Touch</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -627,7 +741,6 @@
     <h2 class="section-title">Crafted for the <em>Innovative</em> Spirit</h2>
     <div class="services-grid">
 
-      <!-- 1. Flight & Hotel Booking -->
       <div class="service-card">
         <img class="service-img" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&q=80" alt="Flight & Hotel Booking" style="width:100%;height:200px;object-fit:cover;display:block;">
         <div class="service-body">
@@ -637,7 +750,6 @@
         </div>
       </div>
 
-      <!-- 2. Group & Corporate Travel -->
       <div class="service-card">
         <img class="service-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&q=80" alt="Group Tours" style="width:100%;height:200px;object-fit:cover;display:block;">
         <div class="service-body">
@@ -647,7 +759,6 @@
         </div>
       </div>
 
-      <!-- 3. Visa & Travel Advisory -->
       <div class="service-card">
         <img class="service-img" src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=700&q=80" alt="Visa & Documentation" style="width:100%;height:200px;object-fit:cover;display:block;">
         <div class="service-body">
@@ -657,7 +768,6 @@
         </div>
       </div>
 
-      <!-- 4. Adventure & Hiking -->
       <div class="service-card">
         <img class="service-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80" alt="Adventure Tours" style="width:100%;height:200px;object-fit:cover;display:block;">
         <div class="service-body">
@@ -667,7 +777,6 @@
         </div>
       </div>
 
-      <!-- 5. Meet & Assist -->
       <div class="service-card">
         <img class="service-img" src="https://images.unsplash.com/photo-1695510757259-643081efedf0?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Meet & Assist" style="width:100%;height:200px;object-fit:cover;display:block;">
         <div class="service-body">
@@ -677,7 +786,6 @@
         </div>
       </div>
 
-      <!-- 6. Safari & Wildlife Tours -->
       <div class="service-card">
         <img class="service-img" src="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1168&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Safari Tours" style="width:100%;height:200px;object-fit:cover;display:block;">
         <div class="service-body">
@@ -919,6 +1027,39 @@
     <span style="color:rgba(255,255,255,0.3);">Provides Seamless Experiences</span>
   </div>
 </footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function toggleMenu(open) {
+    hamburger.classList.toggle('open', open);
+    mobileMenu.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+    mobileMenu.setAttribute('aria-hidden', !open);
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    toggleMenu(!isOpen);
+  });
+
+  // Close menu when a link is tapped
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Close menu on outside tap
+  document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('open') &&
+        !mobileMenu.contains(e.target) &&
+        !hamburger.contains(e.target)) {
+      toggleMenu(false);
+    }
+  });
+</script>
 
 </body>
 </html>
