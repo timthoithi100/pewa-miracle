@@ -174,14 +174,49 @@
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
   }
+  /* ── HERO SLIDESHOW ── */
   .hero-bg {
     position: absolute; inset: 0;
-    background:
-      linear-gradient(160deg, rgba(13,59,30,0.88) 0%, rgba(26,107,58,0.55) 60%, transparent 100%),
-      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80') center/cover no-repeat;
-    animation: slowZoom 20s ease-in-out infinite alternate;
+    overflow: hidden;
   }
-  @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.06); } }
+  .hero-slide {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.9s ease, transform 0s;
+    will-change: transform, opacity;
+  }
+  .hero-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    animation: heroPan 3.9s ease-in-out forwards;
+  }
+  .hero-slide.exit-left {
+    opacity: 0;
+    transform: translateX(-8%);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .hero-slide::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(13,59,30,0.88) 0%, rgba(26,107,58,0.55) 60%, transparent 100%);
+  }
+  @keyframes heroPan {
+    0%   { transform: translateX(0) scale(1);    }
+    100% { transform: translateX(-2%) scale(1.06); }
+  }
+  /* Slide 1: Entering from right — only during transition */
+  .hero-slide.entering {
+    opacity: 0;
+    transform: translateX(6%);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .hero-slide.entering.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
   .hero::before {
     content: '';
@@ -647,11 +682,30 @@
     .services-grid { grid-template-columns: 1fr; }
     .testi-grid { grid-template-columns: 1fr; }
     .dest-hero-row, .dest-mid-row, .dest-bottom-row {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
+      display: none;
     }
-    .dest-hero-row .dest-card:first-child { grid-column: auto; }
-    .dest-card { height: 220px; }
+    .scroll-indicator {bottom: 6rem;}
+    .hero-content {padding-bottom: 5rem;}
+    /* Mobile horizontal scroll carousel */
+    .dest-mobile-scroll {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 1rem;
+      padding: 0.5rem 1.25rem 1.5rem;
+      margin: 0 -1.25rem;
+      scrollbar-width: none;
+    }
+    .dest-mobile-scroll::-webkit-scrollbar { display: none; }
+    .dest-mobile-scroll .dest-card {
+      flex: 0 0 78vw;
+      max-width: 320px;
+      height: 260px;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      border-radius: 18px;
+    }
     .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
     .dest-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .cta-contact-grid { grid-template-columns: 1fr !important; }
@@ -696,7 +750,13 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" id="heroSlideshow">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1800&q=80');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1800&q=80');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=1800&q=80');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1552423314-cf29ab68ad73?w=1800&q=80');"></div>
+  </div>
   <div class="hero-content">
     <span class="hero-eyebrow">Provides Seamless Experiences</span>
     <h1>Where <em>Every Journey</em><br>Becomes a Miracle</h1>
@@ -706,8 +766,6 @@
       <a href="#destinations" class="btn-ghost">View Destinations</a>
     </div>
   </div>
-  <br>
-  <br>
   <div class="scroll-indicator">Scroll</div>
 </section>
 
@@ -911,7 +969,30 @@
   </div>
 </section>
 
-<!-- WHY US -->
+<!-- MOBILE DESTINATIONS CAROUSEL (hidden on desktop via CSS) -->
+<style>
+  .dest-mobile-carousel { display: none; }
+  @media (max-width: 768px) {
+    .dest-mobile-carousel { display: block; }
+  }
+</style>
+<section class="destinations dest-mobile-carousel" id="destinations-mobile" style="padding-top:0;padding-bottom:2rem;">
+  <div class="destinations-inner">
+    <div class="dest-mobile-scroll">
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1552423314-cf29ab68ad73?q=80&w=900" alt="Holy Land"><div class="dest-overlay"></div><span class="dest-region-tag">Holy Land</span><div class="dest-info"><div class="dest-name">Israel &amp; Jordan</div><div class="dest-sub">Jerusalem · Bethlehem · River Jordan</div></div></div>
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=900&q=80" alt="Kenya"><div class="dest-overlay"></div><span class="dest-region-tag">Kenya</span><div class="dest-info"><div class="dest-name">The Kenyan Experience</div><div class="dest-sub">Nairobi NP · Maasai Market · Mombasa</div></div></div>
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=900&q=80" alt="Egypt"><div class="dest-overlay"></div><span class="dest-region-tag">Africa</span><div class="dest-info"><div class="dest-name">Egypt</div><div class="dest-sub">Pyramids of Giza · Mt. Sinai</div></div></div>
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=900&q=80" alt="South Africa"><div class="dest-overlay"></div><span class="dest-region-tag">South Africa</span><div class="dest-info"><div class="dest-name">Cape Town &amp; Durban</div><div class="dest-sub">Table Mountain · Vineyards</div></div></div>
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1604614765191-02ea6bdb941b?q=80&w=900" alt="Johannesburg"><div class="dest-overlay"></div><span class="dest-region-tag">South Africa</span><div class="dest-info"><div class="dest-name">Johannesburg &amp; Soweto</div><div class="dest-sub">Apartheid Museum · Sun City</div></div></div>
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=900&q=80" alt="Italy"><div class="dest-overlay"></div><span class="dest-region-tag">Europe</span><div class="dest-info"><div class="dest-name">Italy &amp; Vatican</div><div class="dest-sub">Rome · Assisi · Milan · St. Peter's</div></div></div>
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1578912996078-305d92249aa6?q=80&w=900" alt="Spain"><div class="dest-overlay"></div><span class="dest-region-tag">Europe</span><div class="dest-info"><div class="dest-name">Spain &amp; Portugal</div><div class="dest-sub">Avila · Fatima · Heritage</div></div></div>
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=700&q=80" alt="Americas"><div class="dest-overlay"></div><span class="dest-region-tag">The Americas</span><div class="dest-info"><div class="dest-name">USA &amp; Mexico</div><div class="dest-sub">City Breaks · Cultural Tours</div></div></div>
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1545889238-7db7056fb932?q=80&w=900" alt="Argentina"><div class="dest-overlay"></div><span class="dest-region-tag">South America</span><div class="dest-info"><div class="dest-name">Argentina</div><div class="dest-sub">Buenos Aires · Patagonia</div></div></div>
+      <div class="dest-card"><img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=700&q=80" alt="Australia"><div class="dest-overlay"></div><span class="dest-region-tag">Oceania</span><div class="dest-info"><div class="dest-name">Australia</div><div class="dest-sub">Sydney · Outback · Gold Coast</div></div></div>
+    </div>
+  </div>
+</section>
+
 <section class="whyus" id="why-us">
   <div class="whyus-inner">
     <div>
@@ -962,10 +1043,10 @@
         <span class="cta-contact-value">+254 795 733 626</span>
       </a>
 
-      <a href="mailto:info@pewamiracletravel.com" class="cta-contact-card">
+      <a href="/cdn-cgi/l/email-protection#7910171f1639091c0e1814100b181a151c0d0b180f1c15571a1614" class="cta-contact-card">
         <div class="cta-contact-icon email-icon">✉️</div>
         <span class="cta-contact-label">Email Us</span>
-        <span class="cta-contact-value">info@pewamiracletravel.com</span>
+        <span class="cta-contact-value"><span class="__cf_email__" data-cfemail="6f060109002f1f0a180e02061d0e0c030a1b1d0e190a03410c0002">[email&#160;protected]</span></span>
       </a>
 
       <a href="https://wa.me/254795733626" target="_blank" rel="noopener" class="cta-contact-card">
@@ -1016,7 +1097,7 @@
       <h4>Contact</h4>
       <ul>
         <li><a href="tel:+254795733626">Call us: +254 795 733 626</a></li>
-        <li><a href="mailto:info@pewamiracletravel.com">Email us: info@pewamiracletravel.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#86efe8e0e9c6f6e3f1e7ebeff4e7e5eae3f2f4e7f0e3eaa8e5e9eb">Email us: <span class="__cf_email__" data-cfemail="f29b9c949db2829785939f9b8093919e9786809384979edc919d9f">[email&#160;protected]</span></a></li>
         <li><a href="https://wa.me/254795733626">WhatsApp: +254 795 733 626</a></li>
         <li style="color:rgba(255,255,255,0.55);font-size:0.88rem;">P.O. Box 1439-00502 Karen, Nairobi - Kenya</li>
       </ul>
@@ -1028,7 +1109,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -1051,15 +1132,58 @@
     link.addEventListener('click', () => toggleMenu(false));
   });
 
-  // Close menu on outside tap
-  document.addEventListener('click', (e) => {
-    if (mobileMenu.classList.contains('open') &&
-        !mobileMenu.contains(e.target) &&
-        !hamburger.contains(e.target)) {
-      toggleMenu(false);
-    }
-  });
-</script>
+  // ── HERO SLIDESHOW ──
+  (function() {
+    const slides = document.querySelectorAll('#heroSlideshow .hero-slide');
+    let current = 0;
+    let timer;
 
+    function goTo(next) {
+      const prev = current;
+      current = next;
+
+      // Mark incoming slide as "entering from right"
+      slides[current].style.transition = 'none';
+      slides[current].style.transform = 'translateX(6%)';
+      slides[current].style.opacity = '0';
+
+      // Force reflow
+      slides[current].getBoundingClientRect();
+
+      // Animate in
+      slides[current].style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+      slides[current].style.transform = 'translateX(0)';
+      slides[current].style.opacity = '1';
+
+      // Remove the pan keyframe from prev before re-adding for current
+      slides[current].style.animation = 'none';
+      slides[current].getBoundingClientRect();
+      slides[current].style.animation = 'heroPan 3.9s ease-in-out forwards';
+
+      // Animate out the previous
+      slides[prev].style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+      slides[prev].style.transform = 'translateX(-6%)';
+      slides[prev].style.opacity = '0';
+
+      // After transition clean up prev
+      setTimeout(() => {
+        slides[prev].style.transition = 'none';
+        slides[prev].style.transform = 'translateX(100%)';
+        slides[prev].style.animation = 'none';
+      }, 950);
+    }
+
+    // Initialise first slide pan
+    slides[0].style.animation = 'heroPan 3.9s ease-in-out forwards';
+
+    function startTimer() {
+      timer = setInterval(() => {
+        goTo((current + 1) % slides.length);
+      }, 4000);
+    }
+
+    startTimer();
+  })();
+</script>
 </body>
 </html>
