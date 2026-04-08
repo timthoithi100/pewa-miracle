@@ -207,7 +207,6 @@
     0%   { transform: translateX(0) scale(1);    }
     100% { transform: translateX(-2%) scale(1.06); }
   }
-  /* Slide 1: Entering from right — only during transition */
   .hero-slide.entering {
     opacity: 0;
     transform: translateX(6%);
@@ -589,9 +588,9 @@
   .cta-band > div > p { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.75; }
   .cta-contact-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.25rem;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   .cta-contact-card {
@@ -617,6 +616,7 @@
   .cta-contact-icon.call-icon  { background: rgba(100,180,255,0.25); }
   .cta-contact-icon.email-icon  { background: rgba(45,184,75,0.25); }
   .cta-contact-icon.wa-icon     { background: rgba(37,211,102,0.25); }
+  .cta-contact-icon.fb-icon     { background: rgba(66,103,178,0.35); }
   .cta-contact-icon.post-icon   { background: rgba(201,168,76,0.25); }
   .cta-contact-label {
     font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
@@ -672,6 +672,7 @@
     .dest-mid-row { grid-template-columns: 1fr 1fr; grid-template-rows: 220px; }
     .dest-bottom-row { grid-template-columns: repeat(2, 1fr); grid-template-rows: 180px 180px; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
+    .cta-contact-grid { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 768px) {
     nav { padding: 1rem 1.25rem; }
@@ -1032,7 +1033,7 @@
 <section class="cta-band" id="contact">
   <div style="position:relative;z-index:2;">
     <span class="section-label">Start Your Journey</span>
-    <h2 class="section-title">Ready for Your Next <em style="color: #0d3b1e;"">Experience</em>?</h2>
+    <h2 class="section-title">Ready for Your Next <em style="color: #0d3b1e;">Experience</em>?</h2>
     <p>Let's build your perfect trip together. Reach out to our team and we'll take it from there.</p>
 
     <div class="cta-contact-grid">
@@ -1053,6 +1054,14 @@
         <div class="cta-contact-icon wa-icon">💬</div>
         <span class="cta-contact-label">WhatsApp</span>
         <span class="cta-contact-value">+254 795 733 626</span>
+      </a>
+
+      <a href="https://www.facebook.com/people/Pewa-Miracle-Travel-and-Tours-Ltd/61573225949885/" target="_blank" rel="noopener" class="cta-contact-card">
+        <div class="cta-contact-icon fb-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#a8c4f5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </div>
+        <span class="cta-contact-label">Facebook</span>
+        <span class="cta-contact-value">Pewa Miracle Travel & Tours</span>
       </a>
 
       <div class="cta-contact-card no-link">
@@ -1099,6 +1108,7 @@
         <li><a href="tel:+254795733626">Call us: +254 795 733 626</a></li>
         <li><a href="mailto:info@pewamiracletravel.com">Email us: info@pewamiracletravel.com</a></li>
         <li><a href="https://wa.me/254795733626">WhatsApp: +254 795 733 626</a></li>
+        <li><a href="https://www.facebook.com/people/Pewa-Miracle-Travel-and-Tours-Ltd/61573225949885/" target="_blank" rel="noopener">Facebook: Pewa Miracle Travel & Tours</a></li>
         <li style="color:rgba(255,255,255,0.55);font-size:0.88rem;">P.O. Box 1439-00502 Karen, Nairobi - Kenya</li>
       </ul>
     </div>
@@ -1118,7 +1128,6 @@
     mobileMenu.classList.toggle('open', open);
     hamburger.setAttribute('aria-expanded', open);
     mobileMenu.setAttribute('aria-hidden', !open);
-    // Prevent body scroll when menu is open
     document.body.style.overflow = open ? 'hidden' : '';
   }
 
@@ -1127,7 +1136,6 @@
     toggleMenu(!isOpen);
   });
 
-  // Close menu when a link is tapped
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', () => toggleMenu(false));
   });
@@ -1142,30 +1150,24 @@
       const prev = current;
       current = next;
 
-      // Mark incoming slide as "entering from right"
       slides[current].style.transition = 'none';
       slides[current].style.transform = 'translateX(6%)';
       slides[current].style.opacity = '0';
 
-      // Force reflow
       slides[current].getBoundingClientRect();
 
-      // Animate in
       slides[current].style.transition = 'opacity 0.9s ease, transform 0.9s ease';
       slides[current].style.transform = 'translateX(0)';
       slides[current].style.opacity = '1';
 
-      // Remove the pan keyframe from prev before re-adding for current
       slides[current].style.animation = 'none';
       slides[current].getBoundingClientRect();
       slides[current].style.animation = 'heroPan 3.9s ease-in-out forwards';
 
-      // Animate out the previous
       slides[prev].style.transition = 'opacity 0.9s ease, transform 0.9s ease';
       slides[prev].style.transform = 'translateX(-6%)';
       slides[prev].style.opacity = '0';
 
-      // After transition clean up prev
       setTimeout(() => {
         slides[prev].style.transition = 'none';
         slides[prev].style.transform = 'translateX(100%)';
@@ -1173,7 +1175,6 @@
       }, 950);
     }
 
-    // Initialise first slide pan
     slides[0].style.animation = 'heroPan 3.9s ease-in-out forwards';
 
     function startTimer() {
